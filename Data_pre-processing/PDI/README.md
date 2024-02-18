@@ -7,12 +7,12 @@
 
 ### 2. Clean adapters and low quality reads 
 ```
-# Paired-end reads
-cd RawData/PE/
-./trimmomatic_PE_job.sh
-
 # Single-read reads
 cd RawData/SE/
-./trimmomatic_SE_job.sh
+./2.1_trimmomatic_SE_job.sh
+
+# Paired-end reads
+cd RawData/PE/
+./2.2_trimmomatic_PE_job.sh
 ```
 
