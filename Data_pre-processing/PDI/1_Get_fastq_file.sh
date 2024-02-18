@@ -20,7 +20,7 @@ donwload_single() {
   i=$(echo $1 | cut -f1)
   echo "$i"
   fastq-dump --gzip $Input;
-  mv ${1}.fastq.gz RawReads/SE/;
+  mv ${1}.fastq.gz RawData/SE/;
 }
 
 donwload_paired() {
@@ -28,8 +28,8 @@ donwload_paired() {
   i=$(echo $1 | cut -f1)
   echo "$i"
   fastq-dump --gzip --split-files $Input;
-  mv ${1}_1.fastq.gz RawReads/PE/;
-  mv ${1}_2.fastq.gz RawReads/PE/;
+  mv ${1}_1.fastq.gz RawData/PE/;
+  mv ${1}_2.fastq.gz RawData/PE/;
 }
 
 export -f donwload_single
