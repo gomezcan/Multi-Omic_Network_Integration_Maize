@@ -8,7 +8,9 @@ This repository contains a description of primary data, processed data, and code
 
 ## Main sections
 
-### Construction of a Maize regulatory network based on multiple layers
+### 1. [Data_pre-processing](https://github.com/gomezcan/Multi-Omic_Network_Integration_Maize/tree/8ff836333d49d2b4b82a7727c098dc50ef1e52d4/Data_pre-processing)
+
+### 2. Construction of a Maize regulatory network based on multiple layers
 
 * Coexpression network (CEN)
 * Gene association network based on trans-eQTLs (GAN)
