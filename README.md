@@ -1,30 +1,43 @@
-# Multi-Omic_Network_Integration_Maize
+# Multi-Omic Network Integration in Maize
 
-This repository contains a description of primary data, processed data, and codes used to obtain the main results/figures of this project. 
+Code and processed-data description for **"Prioritizing Maize Metabolic Gene Regulators through Multi-Omic Network Integration"** (Gomez-Cano et al.).
 
-**Graphical abstract**
+This repository documents the primary data, processed data, and code used to build four transcription-factor (TF)–target network layers from maize expression, protein–DNA interaction, and eQTL data; integrate them; and predict, prioritize, and evaluate TF functions.
 
+- **Paper:** _[journal / DOI — pending]_
+- **Processed outputs** (network edge-lists, gene embeddings, the TF→function catalog, prioritization scores): **Zenodo _[DOI — pending]_**
+- **License:** MIT (see `LICENSE`)
 
+## Repository structure (pipeline order)
 
-## Main sections
+| Section | Contents |
+|---------|----------|
+| `1_Data_preprocessing/` | Raw & processed data prep by modality — `PDI/` (ChIP-/DAP-seq download, trimming, mapping, peak calling), `SNPs_eQTL/` (SNP→bed, eQTL identification/annotation), `Expression_coexpression/` (expression matrices, weighted-PCC) |
+| `2_Network_construction/` | The four TF–target layers — `RFN_expression/` (RF-inferred regulatory network), `GAN_trans_eQTL/`, `GRN_PDI/`, `eGRN_cis_eQTL/` |
+| `3_Functional_annotation/` | TF-annotation strategies — `common_target/`, `common_function/`, `network_based_embedding/` (PecanPy embeddings + MI/MR distance + clustering), `annotation_PWY_GO/` |
+| `4_Evaluation_knockouts/` | Benchmarking predictions against TF-knockout DEGs |
+| `5_Evaluation_random_networks/` | Benchmarking against randomized networks |
+| `6_Prioritization_and_conditions/` | rZ/URS prioritization of regulators; GSEA condition-mapping |
+| `7_Paralog_redundancy/` | Embedding-based prediction of paralog redundancy/divergence |
+| `figures/` | Scripts that render the manuscript figures |
+| `environment/` | Software/package versions to reproduce the analyses |
+| `archive/` | Superseded script versions, kept for provenance |
 
-### 1. [Data_pre-processing](https://github.com/gomezcan/Multi-Omic_Network_Integration_Maize/tree/8ff836333d49d2b4b82a7727c098dc50ef1e52d4/Data_pre-processing)
+> **Terminology note:** the expression-based layer built with random-forest regression (following Zhou et al. 2020) is referred to here as the **RF-inferred regulatory network (RFN)** — previously labeled "co-expression network (CEN)". It predicts regulatory (TF→target) relationships from expression and does not, by itself, imply correlation-based co-expression or causal regulation.
 
-### 2. [Construction of a Maize regulatory network based on multiple layers](https://github.com/gomezcan/Multi-Omic_Network_Integration_Maize/tree/144727333c32db3bc0da68d4e772f18909701060/Construction%20of%20a%20Maize%20regulatory%20network%20based%20on%20multiple%20layers)
+## Requirements
 
-* Coexpression network (CEN)
-* Gene association network based on trans-eQTLs (GAN)
-* Gene-regulatory network (GRN), and cis-eQTLs overlapped with GRN interactions (eGRN)
+- **R** — topGO, GeneOverlap, GOSemSim, Rrvgo, DECIPHER, Parmigene, FGSEA, wCorr, igraph, Rsubread, DESeq2 (see `environment/`).
+- **Python** — PecanPy, numpy, pandas, scikit-learn.
+- **Command-line** — bcftools, Bowtie2, SAMtools, Trimmomatic, GEM, FastQC.
 
-### 3. TF Functional annotation
+Exact versions are pinned in `environment/`.
 
-### 4. Evaluation of functional prediction with knockouts
+## How to run
 
-### 5. Evaluation of functional prediction by comparing with random network
+Sections are ordered; each contains a `README` with the specific commands. In brief:
+`1_Data_preprocessing` → `2_Network_construction` → `3_Functional_annotation` → (`4`, `5`) evaluation → `6` prioritization → `7` paralogs. Figure scripts live in `figures/`.
 
-### 6. Prioritization of regulators by biological process
+## Citation
 
-### 7. Topological properties predict TF homeologs redundancy 
-
-
-
+If you use this code or the associated data, please cite the manuscript _[citation — pending]_ and the Zenodo archive _[DOI — pending]_.

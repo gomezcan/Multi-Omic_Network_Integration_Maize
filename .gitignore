@@ -1,0 +1,32 @@
+# OS / editor
+.DS_Store
+*~
+*.swp
+
+# Jupyter
+.ipynb_checkpoints/
+
+# R
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+env/
+
+# Large data / analysis outputs — deposit to Zenodo instead of committing
+*.bam
+*.bai
+*.sam
+*.fastq
+*.fastq.gz
+*.fq.gz
+*.bw
+*.bigWig
+
+# Local staging (reorg scratch, never committed)
+_staging/
