@@ -12,7 +12,7 @@ This repository documents the primary data, processed data, and code used to bui
 
 | Section | Contents |
 |---------|----------|
-| `1_Data_preprocessing/` | Raw & processed data prep by modality — `PDI/` (ChIP-/DAP-seq download, trimming, mapping, peak calling), `SNPs_eQTL/` (SNP→bed, eQTL identification/annotation), `Expression_coexpression/` (expression matrices, weighted-PCC) |
+| `1_Data_preprocessing/` | Raw & processed data prep by modality — `PDI/` (ChIP-/DAP-seq download, trimming, mapping, peak calling, peak→target assignment), `SNPs_eQTL/` (SNP→bed, eQTL identification/annotation), `Expression_coexpression/` (expression matrices, weighted-PCC) |
 | `2_Network_construction/` | The four TF–target layers — `RFN_expression/` (RF-inferred regulatory network), `GAN_trans_eQTL/`, `GRN_PDI/`, `eGRN_cis_eQTL/` |
 | `3_Functional_annotation/` | TF-annotation strategies — `common_target/`, `common_function/`, `network_based_embedding/` (PecanPy embeddings + MI/MR distance + clustering), `annotation_PWY_GO/` |
 | `4_Evaluation_knockouts/` | Benchmarking predictions against TF-knockout DEGs |

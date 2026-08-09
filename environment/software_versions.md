@@ -13,9 +13,11 @@ Versions used for the analyses in Gomez-Cano et al. Pin these (or use the contai
 |------|---------|---------|
 | FastQC | 0.11.5 | PDI read QC |
 | Trimmomatic | _[pin version]_ | PDI read trimming |
-| Bowtie2 | 2.3.4.1 | PDI read mapping |
+| Bowtie2 | 2.3.5.1 (module loaded in `3.x_MappingBowtie2_*` scripts; Methods draft said 2.3.4.1 — reconcile) | PDI read mapping |
 | SAMtools | 1.9 | PDI alignment filtering |
+| Picard | _[pin version]_ | PDI duplicate removal (MarkDuplicates) |
 | GEM | 3.4 | PDI peak calling |
+| bedtools | _[pin version]_ | PDI peak→TSS target assignment |
 | bcftools | 1.7 | SNP dataset concatenation |
 | PecanPy | _[pin version]_ | network embeddings |
 
