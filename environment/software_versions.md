@@ -41,6 +41,13 @@ Versions used for the analyses in Gomez-Cano et al. Pin these (or use the contai
 |---------|---------|---------|
 | scikit-learn (RandomForestRegressor) | _[pin version]_ | RFN construction (per Zhou et al. 2020) |
 | PecanPy | _[pin version]_ | node embeddings |
+| fuzzy-c-means (fcmeans) | _[pin version]_ | cluster-number (K) selection notebooks |
+| kneed | _[pin version]_ | knee-point detection in K selection |
 | numpy / pandas | _[pin versions]_ | data handling |
+
+## Java
+| Tool | Version | Used in |
+|------|---------|---------|
+| ClusterONE | _[pin version]_ | embedding-distance clustering |
 
 > Items marked _[pin version]_ were not stated in the original Methods — recover from the analysis environment (`sessionInfo()` / `pip freeze` / `conda list`) before submission. A frozen `renv.lock` and/or `environment.yml` should be added here.
