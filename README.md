@@ -16,64 +16,35 @@ Folders `1_ … 7_` are the pipeline, in run order. Every artifact marked ⭐ is
 
 ```mermaid
 flowchart TD
-    subgraph IN["Inputs (raw / public)"]
+    subgraph IN["Inputs — raw / public"]
         direction LR
-        iEXP["Expression panel<br/>(coexpression atlas)"]
-        iPDI["Public ChIP- & DAP-seq<br/>(metadata: Table S2)"]
-        iQTL["cis- / trans-eQTL sets"]
-        iACR["scATAC ACRs<br/>(GEO GSE155178)"]
+        iEXP["Expression panel<br/>(coexpression atlas)"] ~~~ iPDI["Public ChIP- & DAP-seq<br/>(metadata: Table S2)"] ~~~ iQTL["cis- / trans-eQTL sets"] ~~~ iACR["scATAC ACRs<br/>(GEO GSE155178)"]
     end
 
     subgraph S1["1 · Data preprocessing"]
         direction LR
-        p1["PDI: trim → map → filter<br/>→ GEM peaks → peak-to-TSS targets"]
-        p2["SNPs & eQTL:<br/>SNP-to-bed → annotate → clean"]
-        p3["Expression: expressed-gene<br/>lists · wPCC database"]
+        p3["Expression: expressed-gene<br/>lists · wPCC database"] ~~~ p1["PDI: trim → map → filter →<br/>GEM peaks → peak-to-TSS targets"] ~~~ p2["SNPs & eQTL: SNP-to-bed<br/>→ annotate → clean"]
     end
 
     subgraph S2["2 · Network construction — four TF→target layers"]
         direction LR
-        n1["RFN ⭐<br/>(RF-inferred, expression)"]
-        n2["GRN ⭐<br/>(PDI)"]
-        n3["eGRN ⭐<br/>(cis-eQTL-supported PDI)"]
-        n4["GAN ⭐<br/>(trans-eQTL)"]
+        n1["RFN ⭐<br/>RF-inferred,<br/>expression"] ~~~ n2["GRN ⭐<br/>PDI"] ~~~ n3["eGRN ⭐<br/>cis-eQTL-<br/>supported PDI"] ~~~ n4["GAN ⭐<br/>trans-eQTL"]
     end
 
     subgraph S3["3 · Integration, embedding & TF annotation"]
-        i1["Integrate layers → weighted union network ⭐"]
-        i2["PecanPy node embeddings ⭐<br/>(Dim50 · WL80 · nW100)"]
-        i3["MI/MR distance → ClusterONE clusters"]
-        i4["TF→function annotation, 3 strategies:<br/>network-based · common-target · common-function<br/>→ TF→function catalog (Table S8) ⭐"]
+        direction LR
+        i1["weighted union<br/>network ⭐"] --> i2["PecanPy embeddings ⭐<br/>Dim50 · WL80 · nW100"] --> i3["MI/MR distance →<br/>ClusterONE clusters"] --> i4["3 strategies →<br/>TF→function<br/>catalog (S8) ⭐"]
     end
 
-    s4["4 · Evaluation vs<br/>TF-knockout DEGs"]
-    s5["5 · Evaluation vs<br/>random networks"]
-    s6["6 · Prioritization (rZ / URS)<br/>+ GSEA condition mapping ⭐"]
-    s7["7 · Paralog redundancy<br/>/ divergence"]
+    subgraph S4567["4–7 · Evaluation → prioritization → paralogs"]
+        direction LR
+        s4["4 · Evaluation vs<br/>TF-knockout DEGs"] ~~~ s5["5 · Evaluation vs<br/>random networks"] ~~~ s6["6 · Prioritization<br/>rZ / URS + GSEA ⭐"] ~~~ s7["7 · Paralog<br/>redundancy"]
+    end
 
-    iPDI --> p1
-    iACR --> p1
-    iQTL --> p2
-    iEXP --> p3
-
-    p3 --> n1
-    p1 --> n2
-    p1 --> n3
-    p2 --> n3
-    p2 --> n4
-
-    n1 & n2 & n3 & n4 --> i1
-    i1 --> i2 --> i3 --> i4
-
-    i4 --> s4
-    i4 --> s5
-    i4 --> s6
-    i2 --> s7
-    p3 --> s7
-
-    classDef zen stroke-width:2.5px,stroke-dasharray:0;
-    class n1,n2,n3,n4,i1,i2,i4 zen;
+    IN --> S1 --> S2 --> S3 --> S4567
 ```
+
+*(Band-level arrows; the per-artifact hand-offs are in the tables below.)*
 
 ## Step by step
 
