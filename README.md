@@ -1,5 +1,7 @@
 # Multi-Omic Network Integration in Maize
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21875974.svg)](https://doi.org/10.5281/zenodo.21875974) [![Data](https://img.shields.io/badge/data-10.5281%2Fzenodo.21866340-blue)](https://doi.org/10.5281/zenodo.21866340)
+
 Code and processed-data description for **"Prioritizing Maize Metabolic Gene Regulators through Multi-Omic Network Integration"** (Gomez-Cano et al.).
 
 Four transcription-factor (TF)→target network layers are built from maize expression, protein–DNA-interaction (PDI), and eQTL data, then integrated into a single weighted network whose node embeddings are used to annotate, evaluate, prioritize, and compare metabolic gene regulators.
@@ -94,7 +96,7 @@ The processed artifacts below are deposited at Zenodo: **DOI [10.5281/zenodo.218
 | 6 | `Pecanpy_uFNetsW.Dim50_WL80_nW10.txt` | Node embeddings (50 dims, walk length 80, 10 walks) | 3 · `network_based_embedding/` (`2_pecanpy_weighted_job.sh`) | 3 (MI/MR), 7 |
 | 7 | TF→function catalog (**Table S8**, `Table_S8.txt`) | TF ↔ predicted pathway/GO functions, all strategies, with per-association threshold-stability scores (see `8_Revision_analyses/`) | 3 · annotation outputs (+ `Summary.Total.Annotation.txt`, assembled in 4) | 6 |
 | 8 | Prioritization scores (rZ / URS) | Ranked regulators per metabolic process | 6 · `prioritization_rZ_URS/` | Fig 3 |
-| 9 | Repo snapshot | This repository, archived via the GitHub–Zenodo integration (release v1.0.0) | — | — |
+| 9 | Repo snapshot | This repository, archived: [10.5281/zenodo.21875975](https://doi.org/10.5281/zenodo.21875975) (v1.0.0) | — | — |
 
 > Items 1–8 are published in the data deposit (the record also carries `Table_S7.txt.gz`, the per-peak PDI table that exceeds journal SI size limits). Item 9 is the code archive, minted on release.
 
@@ -114,4 +116,4 @@ The processed artifacts below are deposited at Zenodo: **DOI [10.5281/zenodo.218
 
 ## Citation
 
-If you use this code or the associated data, please cite the manuscript _[citation — pending]_ and the data deposit [10.5281/zenodo.21866340](https://doi.org/10.5281/zenodo.21866340). A code-archive DOI for this repository (GitHub release v1.0.0 via the Zenodo integration) is added on release.
+If you use this code or the associated data, please cite the manuscript _[citation — pending]_ and the data deposit [10.5281/zenodo.21866340](https://doi.org/10.5281/zenodo.21866340). This repository is archived at [10.5281/zenodo.21875975](https://doi.org/10.5281/zenodo.21875975) (release v1.0.0; concept DOI 10.5281/zenodo.21875974 always resolves to the latest release).
