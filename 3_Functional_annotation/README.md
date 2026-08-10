@@ -13,13 +13,13 @@ The four edge lists ⭐ from step 2 (`CoExp_…`, `Only_PDI_…`, `CisE_PDI_…`
 |---|---|---|---|
 | 0 | `Fig_integrationV3.R` (support: `wPCC_m_GAN_Random.parallel.R`; variant: `Fig_Integration_CLR.R` = CLR benchmark) | integrate/weight the four layers (wPCC-based edge weights; GAN random background) | integration stats (Fig 1) |
 | 1 | `1_Set_Pecanpy_weighted.R` | merge the four edge lists into one weighted union network | `uniqFullNets_weighted.txt` ⭐ |
-| 2 | `2_pecanpy_weighted_job.sh` | PecanPy node2vec on the weighted network | `Pecanpy_uFNetsW.Dim50_WL80_nW100.txt` ⭐ (50 dims, walk length 80, 100 walks) |
+| 2 | `2_pecanpy_weighted_job.sh` | PecanPy node2vec on the weighted network | `Pecanpy_uFNetsW.Dim50_WL80_nW10.txt` ⭐ (50 dims, walk length 80, 10 walks) |
 | 3 | `3_OptimumK_pepanpy.ipynb` 📓 | **decision record**: fuzzy c-means + knee-point (kneed) selection of the cluster number *K* on the embedding | chosen *K* |
 | — | `CosMatrix_pecanpy.ipynb` 📓 | cosine-similarity matrix of the embeddings | cosine matrix |
 | — | `Selecting_N_clusters.ipynb` 📓 | companion K-selection analysis (earlier variant of #3) | — |
 | 4 | `DistanceCalculation/1_MI_and_MR_Distance.R` | mutual-information + mutual-rank distance between embedded genes (Parmigene) | `MR_edgesDB_…/MR_MI.pecanpy.<gene>.txt` |
 | 5 | `DistanceCalculation/2_create_ClusterOneInput.sh` (+ `Filter_pVal.R`) | assemble/filter the MR-MI edge database | `InputClusterONE_…_syntenic.txt` |
-| 6 | `DistanceCalculation/3_ClusterOne_job.sh` | ClusterONE clustering of the embedding-distance graph | cluster memberships |
+| 6 | `DistanceCalculation/3_ClusterOne_job.sh` | retained for provenance only: the published analysis does not use ClusterONE; each TF's "cluster" is its MRMI neighborhood (D ≥ 0.005) taken directly from the step-5 edge list | — |
 | 7 | `Fig_pecanpyV6.R`, `Fig_PecanpyPart2.R` | per-cluster GO/PWY enrichment; TF–GO network assembly | `BP_results_targets/`, `TFGO_4337_net.rds`, `MaizeSyntenicGenes_GOparent.rds` |
 | viz | `tsne/` (`tsne_Adj_matrix_job.R`, `Fig_tsne.R`, `OptimumK_tsne.ipynb` 📓, `Get_tsneDataExample.R`) | t-SNE projection of the embedding + K-selection check in t-SNE space | Fig 1 panels |
 

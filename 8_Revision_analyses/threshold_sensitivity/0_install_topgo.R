@@ -1,0 +1,8 @@
+lib <- file.path(Sys.getenv("SENS_DIR"), "Rlib")
+.libPaths(c(lib, .libPaths()))
+if (!requireNamespace("BiocManager", quietly=TRUE))
+  install.packages("BiocManager", lib=lib, repos="https://cloud.r-project.org")
+BiocManager::install(c("topGO"), lib=lib, update=FALSE, ask=FALSE)
+cat("=== done; check ===\n")
+library(topGO, lib.loc=lib)
+cat("topGO loaded OK:", as.character(packageVersion("topGO")), "\n")

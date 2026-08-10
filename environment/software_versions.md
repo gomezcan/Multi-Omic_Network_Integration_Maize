@@ -48,6 +48,9 @@ Versions used for the analyses in Gomez-Cano et al. Pin these (or use the contai
 ## Java
 | Tool | Version | Used in |
 |------|---------|---------|
-| ClusterONE | _[pin version]_ | embedding-distance clustering |
+| ClusterONE | 1.0 (jar) | prepared but **not used** in the published analysis (MRMI neighborhoods used instead); job script retained for provenance |
 
 > Items marked _[pin version]_ were not stated in the original Methods — recover from the analysis environment (`sessionInfo()` / `pip freeze` / `conda list`) before submission. A frozen `renv.lock` and/or `environment.yml` should be added here.
+
+## Revision analyses (`8_Revision_analyses/`, 2026)
+Run with **R 4.6.1**: data.table 1.18.2.1 · cluster 2.1.8.2 · ggplot2 · topGO **2.64.0** · GO.db **3.23.1** (Bioconductor). GO-arm significance depends on the installed GO.db release; the original analysis used the 2023 release (see S3 Text).
