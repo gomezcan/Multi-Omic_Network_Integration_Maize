@@ -52,7 +52,7 @@ flowchart TD
 
 | Step | Folder | What happens | Key outputs (→ used by) | Manuscript |
 |---|---|---|---|---|
-| **1** | [`1_Data_preprocessing/`](1_Data_preprocessing) | Modality-specific input prep: full raw ChIP-/DAP-seq chain (download → trim → Bowtie2 → MAPQ30+dedup → GEM peaks → peak→TSS targets), eQTL cleaning/annotation, expressed-gene lists + weighted-PCC (wPCC) database | `Net.Dis2TSS.txt`, clean cis/trans eQTL sets, expressed-gene lists, wPCC DB (→ 2, 3) | Methods |
+| **1** | [`1_Data_preprocessing/`](1_Data_preprocessing) | Modality-specific input prep: full raw ChIP-/DAP-seq chain (download → trim → Bowtie2 → MAPQ30+dedup → GEM peaks → peak→TSS targets), eQTL calling (eight-model rMVP scan) + cleaning/annotation, expressed-gene lists + weighted-PCC (wPCC) database | `Net.Dis2TSS.txt`, clean cis/trans eQTL sets, expressed-gene lists, wPCC DB (→ 2, 3) | Methods |
 | **2** | [`2_Network_construction/`](2_Network_construction) | One script per layer builds the four TF→target edge lists | `CoExp_NetworkFinal…txt` ⭐, `Only_PDI_NetworkFinal…txt` ⭐, `CisE_PDI_NetworkFinal…txt` ⭐, `teQTL_NetworkFinal…txt` ⭐ (→ 3, 5, 6) | Fig 1 |
 | **3** | [`3_Functional_annotation/`](3_Functional_annotation) | Integrate the four layers, embed nodes with PecanPy, group genes by MRMI-neighborhood similarity, annotate TFs by three strategies | `uniqFullNets_weighted.txt` ⭐, PecanPy embeddings ⭐, cluster memberships, PWY/GO enrichments → **TF→function catalog (Table S8)** ⭐ (→ 4, 5, 6) | Figs 1, 3 |
 | **4** | [`4_Evaluation_knockouts/`](4_Evaluation_knockouts) | Benchmark the three annotation strategies against TF-knockout DEGs | method-comparison stats; `Summary.Total.Annotation.txt` (→ 6) | Fig 2 |

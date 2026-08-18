@@ -13,6 +13,13 @@ Numbered steps 1→8: download (SRA) → trim (Trimmomatic + `Adapter.fastq`) �
 ### Open chromatin (ACR) — external data, no raw processing
 The ACR layer uses published B73 scATAC ACRs (GEO **GSE155178**), overlapped with the peak sets for QC — nothing to run here.
 
+### `eQTL_calling/` — eQTL identification (upstream of `SNPs_eQTL/`)
+The genotype panel, expression/PEER preparation, permutation thresholds and the genome-wide
+**eight-model** rMVP scan across the eight tissues, ending in the filtered eQTL results table that
+`SNPs_eQTL/` consumes. cis and trans associations are thresholded and filtered differently
+(per-gene vs. per-tissue thresholds; 8-of-8 models for the eGRN set vs. ≥ 2 for the GAN).
+**Run order, the model table and known gaps:** [`eQTL_calling/README.md`](eQTL_calling/README.md).
+
 ### `SNPs_eQTL/` — SNP and eQTL preparation
 | # | Script | What it does |
 |---|---|---|
@@ -41,6 +48,7 @@ The ACR layer uses published B73 scATAC ACRs (GEO **GSE155178**), overlapped wit
 | Artifact | Produced by | Consumed by |
 |---|---|---|
 | `Net.Dis2TSS.txt` (peak→TSS assignments) + TF→target lists | `PDI/` steps 6–8 | `2_…/GRN_PDI/`, `2_…/eGRN_cis_eQTL/` |
+| `00_filtered_cis_trans_all_eQTL_results.txt` (eight-model eQTL scan) | `eQTL_calling/` | `SNPs_eQTL/` |
 | clean cis- / trans-eQTL BED sets | `SNPs_eQTL/` | `2_…/eGRN_cis_eQTL/`, `2_…/GAN_trans_eQTL/` |
 | expressed-gene lists | `expression/` | `2_…/RFN_expression/`, filters throughout |
 | wPCC per-gene database | `wPCC_DB/` | layer weighting in `3_…/network_based_embedding/`, `6_…` (GSEA), `7_…` (paralogs) |
