@@ -16,10 +16,19 @@ The ACR layer uses published B73 scATAC ACRs (GEO **GSE155178**), overlapped wit
 ### `SNPs_eQTL/` — SNP and eQTL preparation
 | # | Script | What it does |
 |---|---|---|
-| 1 | `1_From_SNP_2_bed.sh` | SNP tables → BED |
-| 2 | `2_annotate_trasn_cis_eQTL.sh` | annotate eQTLs as cis / trans |
-| 2.1 | `2.1_FarmToBed.sh` | FarmCPU output → BED |
-| 3 | `Set_CleanFiles_eQTL.R` + `Clean_00eQTLs.sh` | final cleaning of the eQTL sets |
+| 1 | `1_From_SNP_2_bed.sh` | GEM `narrowPeak` peak calls → per-TF summit BEDs (builds the PDI reference `All.Summit_*.bed` used by steps 2 and 3b) |
+| 2 | `2_annotate_trasn_cis_eQTL.sh` | annotate an eQTL BED by gene-body overlap (`intersectBed`) and by distance to the nearest PDI peak summit (`closestBed`) |
+| 3a | `Set_CleanFiles_eQTL.R` | classify eQTLs into the five S2A Fig classes → `Clean_*.v2.txt` sets (→ GAN, `2_…/GAN_trans_eQTL/Fig_transeQTL.v3.R`) |
+| 3b | `Clean_00eQTLs.sh` | cis branch: eQTLs supported by all 8 models and ≤50 kb from the target TSS, matched to PDI summits ≤20 bp away → `cis_eQTL.pdi.network.txt` (→ eGRN, `2_…/eGRN_cis_eQTL/Fig_ciseQTL.R`) |
+
+> **Provenance note.** Both branches start from the eQTL results table produced upstream on the
+> original compute cluster by the genome-wide eight-model rMVP scan (Methods). The intermediate
+> inputs read by `Set_CleanFiles_eQTL.R` (`Final_cis_trans_all_eQTL_10012021.bed`,
+> `trans.eQTL*_target.txt`, `cis.eQTLt_target.txt`, `ciseQTL_noFiter.txt`) came from one-off
+> `2_annotate_trasn_cis_eQTL.sh`-style bedtools runs whose exact invocations were not preserved;
+> source genes were defined as gene body or ≤2 kb upstream of the TSS (S2A Fig). Genome resources
+> referenced but not shipped: `All.Summit_10.2020.bed`, `Zea_mays.B73_RefGen_v4.46.bed`,
+> `Zm.v4.synteny.genes.txt`.
 
 ### `Expression_coexpression/` — expression inputs
 | Where | Notebook / script | What it does |

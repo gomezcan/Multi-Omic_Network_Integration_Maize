@@ -11,7 +11,7 @@
 | **RFN** — RF-inferred regulatory network (expression; formerly "CEN") | `RFN_expression/` | `Fig_Coexpression.v3.R` | expression matrices + expressed-gene lists | `CoExp_NetworkFinal.10_11_2021.txt` |
 | **GRN** — protein–DNA interactions | `GRN_PDI/` | `Fig_PDI.v4.R` (+ `Fig_PDI_newDAP.R` for the new DAP-seq batch) | `Net.Dis2TSS` peak→target assignments, scATAC-overlap z-scores, Table S4 peak QC | `Only_PDI_NetworkFinal.10_14_2022.txt` |
 | **eGRN** — cis-eQTL-supported PDIs | `eGRN_cis_eQTL/` | `Fig_ciseQTL.R` | PDI targets × clean cis-eQTL set | `CisE_PDI_NetworkFinal.10_14_2022.txt` |
-| **GAN** — trans-eQTL gene association | `GAN_trans_eQTL/` | `Set_Input_to_Fig_transeQTL.R` → `Fig_transeQTL.v3.R` | clean trans-eQTL set | `teQTL_NetworkFinal.10_11_2021.txt` |
+| **GAN** — trans-eQTL gene association | `GAN_trans_eQTL/` | `Fig_transeQTL.v3.R` | `Clean_trans.eQTL.v2.txt` + `Clean_trans.eQTLp.v2.txt` from step 1's `SNPs_eQTL/Set_CleanFiles_eQTL.R` | `teQTL_NetworkFinal.10_11_2021.txt` |
 
 RF regression follows Zhou et al. 2020 (scikit-learn `RandomForestRegressor`).
 

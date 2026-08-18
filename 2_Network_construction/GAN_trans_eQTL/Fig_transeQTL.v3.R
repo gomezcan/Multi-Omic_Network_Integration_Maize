@@ -595,7 +595,7 @@ TF_Candidates$PWY <- as.character(TF_Candidates$PWY)
 
 write.table(TF_Candidates, "teQTL_NetworkFinal.CornCYC.04_18_2021.txt", sep = '\t', row.names = F, quote = F)
 
-write.table(Net_teQTL[,1:3], "teQTL_NetworkFinal.10_11_2022.txt", sep = '\t', row.names = F, quote = F)
+write.table(Net_teQTL[,1:3], "teQTL_NetworkFinal.10_11_2021.txt", sep = '\t', row.names = F, quote = F)
 
 
 
